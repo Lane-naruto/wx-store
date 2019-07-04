@@ -1,0 +1,56 @@
+<!--pages/user/user.wxml-->
+<view class='navs-bar'>
+  <view class='navs'>
+    <view class='item-head'>
+      <text class='item-me'>我的头像</text>
+      <image class='item-img' src='{{userInfo.avatarUrl}}'></image>
+    </view>
+    <view class='item-head'>
+      <text class='item-me'>我的昵称</text>
+      <text class='item-nickname'>{{userInfo.nickName}}</text>
+    </view>
+  </view>
+  <view class='navs-detail'>
+      <view class='item-head'>
+        <text class='item-info'>基本资料</text>
+      </view>
+      <view class='item-head'>
+        <text class='item-me'>手机号</text>
+      </view>
+      <view class='item-head'>
+        <text class='item-me'>验证码</text>
+      </view>
+      <view class='item-head'>
+        <text class='item-me'>生日</text>
+        <text class='item-born' bindtap='onBornShow'>{{born?born:'点击选择'}}></text>
+      </view>
+      <view class='item-head'>
+        <text class='item-me'>性别</text>
+        <radio-group class="radio-group" bindchange="radioChange">
+          <label class="radio" wx:for="{{items}}" wx:key=''>
+            <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+          </label>
+        </radio-group>
+      </view>
+  </view>
+  <button class='confirm'>确定</button>
+</view>
+
+<view class='born-picker' hidden='{{!bornShow}}'>
+  <view class='born-title'>
+    <text bindtap='onBornHiden'>取消</text>
+    <text class='title-confirm'>确定</text>
+  </view>
+  <picker-view indicator-style="height: 50px;" style="width: 100%; height: 300px;" value="{{value}}" bindchange="bindChange" calss='picker-view'>
+    <picker-view-column>
+      <view wx:for="{{years}}" style="line-height: 50px" wx:key=''>{{item}}年</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{months}}" style="line-height: 50px" wx:key=''>{{item}}月</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{days}}" style="line-height: 50px" wx:key=''>{{item}}日</view>
+    </picker-view-column>
+  </picker-view>
+
+</view>
